@@ -138,4 +138,20 @@ public class ParkingBoyTest {
         Assertions.assertSame("Unrecognized parking ticket",parkingBoy.showMessage());
     }
 
+    @Test
+    public void should_return_errorMessage_when_fetch_car_given_has_null_ticket(){
+
+        //given
+        Car car=new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket=parkingBoy.parkingCar(car);
+
+        //when
+        Car fetchCar=parkingBoy.fetchCarByTicket(null);
+
+        //then
+        Assertions.assertSame(null,fetchCar);
+        Assertions.assertSame("Please provide your parking ticket.",parkingBoy.showMessage());
+    }
+
 }
