@@ -5,11 +5,10 @@ public class ParkingBoy {
     ParkingLot parkingLot=new ParkingLot();
 
     public Ticket parkingCar(Car car) {
-        parkingLot.setCar(car);
-        return new Ticket();
+        return parkingLot.setCar(car);
     }
 
-    public Car fetchCar(Ticket ticket) {
-        return parkingLot.getCar();
+    public Car fetchCarByTicket(Ticket ticket) {
+        return parkingLot.getCarByTicket(ticket);
     }
 }
