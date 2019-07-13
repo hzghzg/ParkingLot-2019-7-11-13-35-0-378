@@ -87,4 +87,22 @@ public class ParkingBoyTest {
         Assertions.assertSame(null,fetchCar1);
     }
 
+    @Test
+    public void should_return_null_when_parking_car_given_full_position_parkingLot(){
+
+        //given
+        Car car=new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        for (int i = 0; i < 10; i++) {
+            parkingBoy.parkingCar(new Car());
+        }
+
+        //when
+        Ticket ticket=parkingBoy.parkingCar(car);
+
+
+        //then
+        Assertions.assertSame(null,ticket);
+    }
+
 }
