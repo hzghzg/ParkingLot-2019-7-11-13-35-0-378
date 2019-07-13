@@ -71,4 +71,20 @@ public class ParkingBoyTest {
         Assertions.assertSame(null,fetchCar);
     }
 
+    @Test
+    public void should_return_null_when_fetch_car_given_has_used_ticket(){
+
+        //given
+        Car car=new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket=parkingBoy.parkingCar(car);
+
+        //when
+        Car fetchCar=parkingBoy.fetchCarByTicket(ticket);
+        Car fetchCar1=parkingBoy.fetchCarByTicket(ticket);
+
+        //then
+        Assertions.assertSame(null,fetchCar1);
+    }
+
 }
