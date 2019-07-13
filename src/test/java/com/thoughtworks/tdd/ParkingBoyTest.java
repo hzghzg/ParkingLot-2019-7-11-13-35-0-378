@@ -51,7 +51,6 @@ public class ParkingBoyTest {
 
         //when
         Car fetchCar=parkingBoy.fetchCarByTicket(fakeTicket);
-
         //then
         Assertions.assertSame(null,fetchCar);
     }
@@ -103,6 +102,23 @@ public class ParkingBoyTest {
 
         //then
         Assertions.assertSame(null,ticket);
+    }
+
+    @Test
+    public void should_return_errorMessage_when_parking_car_given_has_fake_ticket(){
+
+        //given
+        Car car=new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket=parkingBoy.parkingCar(car);
+        Ticket fakeTicket=new Ticket();
+
+        //when
+        Car fetchCar=parkingBoy.fetchCarByTicket(fakeTicket);
+
+        //then
+        Assertions.assertSame(null,fetchCar);
+        Assertions.assertSame("Unrecognized parking ticket",parkingBoy.showMessage());
     }
 
 }
