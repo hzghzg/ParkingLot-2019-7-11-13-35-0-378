@@ -154,4 +154,21 @@ public class ParkingBoyTest {
         Assertions.assertSame("Please provide your parking ticket.",parkingBoy.showMessage());
     }
 
+    @Test
+    public void should_return_errorMessage_when_parking_car_given_full_position_parkingLot(){
+
+        //given
+        Car car=new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        for (int i = 0; i < 10; i++) {
+            parkingBoy.parkingCar(new Car());
+        }
+
+        //when
+        Ticket ticket=parkingBoy.parkingCar(car);
+
+        //then
+        Assertions.assertSame("Not enough position.",parkingBoy.showMessage());
+    }
+
 }

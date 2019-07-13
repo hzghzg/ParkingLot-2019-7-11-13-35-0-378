@@ -22,5 +22,7 @@ public class ParkingLot {
         return cars.remove(ticket);
     }
 
-
+    public Map<Ticket, Car> getCars() {
+        return cars;
+    }
 }

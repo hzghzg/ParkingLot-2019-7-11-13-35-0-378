@@ -6,6 +6,7 @@ public class ParkingBoy {
     private String message;
 
     public Ticket parkingCar(Car car) {
+        if(parkingLot.getCars().size()==10)message= "Not enough position.";
         return parkingLot.setCar(car);
     }
 
@@ -19,4 +20,5 @@ public class ParkingBoy {
     public String showMessage() {
         return message;
     }
+
 }
