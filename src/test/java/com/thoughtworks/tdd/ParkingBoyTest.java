@@ -41,7 +41,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_car_when_fetch_car_given_has_fake_ticket(){
+    public void should_return_null_when_fetch_car_given_has_fake_ticket(){
 
         //given
         Car car=new Car();
@@ -51,6 +51,21 @@ public class ParkingBoyTest {
 
         //when
         Car fetchCar=parkingBoy.fetchCarByTicket(fakeTicket);
+
+        //then
+        Assertions.assertSame(null,fetchCar);
+    }
+
+    @Test
+    public void should_return_null_when_fetch_car_given_has_null_ticket(){
+
+        //given
+        Car car=new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Ticket ticket=parkingBoy.parkingCar(car);
+
+        //when
+        Car fetchCar=parkingBoy.fetchCarByTicket(null);
 
         //then
         Assertions.assertSame(null,fetchCar);
