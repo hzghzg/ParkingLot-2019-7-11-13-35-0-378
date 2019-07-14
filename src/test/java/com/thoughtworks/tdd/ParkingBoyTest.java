@@ -325,6 +325,25 @@ public class ParkingBoyTest {
 
     }
 
+    @Test
+    public void should_return_errorMessage_when_manager_specify_boy_fetch_car_given_has_null_ticket(){
+
+        //given
+        Car car=new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Map<String,ParkingBoy> managerList=new HashMap<>();
+        managerList.put("parkingBoy",parkingBoy);
+        Manager manager=new Manager(managerList,null);
+
+        //when
+        ParkingBoy assignBoy=manager.specify("parkingBoy");
+        Ticket ticket=assignBoy.parkingCar(car);
+        Car fetchCar=assignBoy.fetchCarByTicket(null);
+
+        //then
+        Assertions.assertSame("Please provide your parking ticket.",manager.showMessage());
+
+    }
 
 
 
