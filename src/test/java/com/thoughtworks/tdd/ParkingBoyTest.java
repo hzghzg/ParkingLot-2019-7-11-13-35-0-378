@@ -284,5 +284,26 @@ public class ParkingBoyTest {
         Assertions.assertSame(car,fetchCar3);
     }
 
+    @Test
+    public void should_return_car_when_manager_fetch_car_given_has_ticket(){
+
+        //given
+        Car car=new Car();
+        Map<Integer,ParkingLot> parkingLots=new HashMap<>();
+        parkingLots.put(1,new ParkingLot(1,10));
+        parkingLots.put(2,new ParkingLot(2,15));
+        Manager manager=new Manager(null,parkingLots);
+        Ticket ticket=manager.parkingCar(car);
+
+        //when
+        Car fetchCar=manager.fetchCarByTicket(ticket);
+
+        //then
+        Assertions.assertSame(car,fetchCar);
+
+    }
+
+    
+
 
 }
