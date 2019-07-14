@@ -175,7 +175,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_second_parkingLog_number_when_first_parkingLot_full_given_has_car(){
+    public void should_return_second_parkingLot_number_when_first_parkingLot_full_given_has_car(){
 
         //given
         Map<Integer,ParkingLot> parkingLots=new HashMap<>();
@@ -194,5 +194,30 @@ public class ParkingBoyTest {
         //then
         Assertions.assertSame(2,number);
     }
+
+    @Test
+    public void should_return_more_empty_position_parkingLot_number_when_parking_car_given_has_car(){
+
+        //given
+        Map<Integer,ParkingLot> parkingLots=new HashMap<>();
+        parkingLots.put(1,new ParkingLot(1));
+        parkingLots.put(2,new ParkingLot(2));
+        SmartParkingBoy smartParkingBoy=new SmartParkingBoy(parkingLots);
+        for (int i = 0; i <5 ; i++) {
+            smartParkingBoy.parkingCar(new Car());
+        }
+        for (int i = 0; i <4 ; i++) {
+            smartParkingBoy.parkingCar(new Car());
+        }
+        Car car=new Car();
+
+        //when
+        Ticket ticket=smartParkingBoy.parkingCar(car);
+        Integer number = ticket.getParkingLotNumber();
+
+        //then
+        Assertions.assertSame(2,number);
+    }
+
 
 }

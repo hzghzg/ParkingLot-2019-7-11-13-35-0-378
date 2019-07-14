@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class ParkingBoy {
 
-    Map<Integer,ParkingLot> parkingLots=new HashMap<>();
-    private String message;
+    protected Map<Integer,ParkingLot> parkingLots=new HashMap<>();
+    protected String message;
 
     public ParkingBoy() {
         parkingLots.put(1,new ParkingLot(1));
