@@ -6,10 +6,22 @@ import java.util.List;
 import java.util.Map;
 
 public class ParkingLot {
+
     private Map<Ticket,Car> cars=new HashMap<>();
+
+    private Integer parkingLotNumber;
+
+    public ParkingLot(Integer parkingLotNumber) {
+        this.parkingLotNumber = parkingLotNumber;
+    }
+
+    public Integer getParkingLotNumber() {
+        return parkingLotNumber;
+    }
 
     public Ticket setCar(Car car) {
         Ticket ticket = new Ticket();
+        ticket.setParkingLotNumber(this.parkingLotNumber);
         if(cars.size()<10){
             cars.put(ticket,car);
             return ticket;

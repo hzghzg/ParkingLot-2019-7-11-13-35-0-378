@@ -1,19 +1,45 @@
 package com.thoughtworks.tdd;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ParkingBoy {
 
-    ParkingLot parkingLot=new ParkingLot();
+    Map<Integer,ParkingLot> parkingLots=new HashMap<>();
     private String message;
 
+    public ParkingBoy() {
+        parkingLots.put(1,new ParkingLot(1));
+    }
+
+    public ParkingBoy(Map<Integer, ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
+    }
+
     public Ticket parkingCar(Car car) {
-        if(parkingLot.getCars().size()==10)message= "Not enough position.";
-        return parkingLot.setCar(car);
+        for (int i=1;i<=parkingLots.size();i++) {
+            if(parkingLots.get(i).getCars().size()==10&&i==parkingLots.size()){
+                message= "Not enough position.";
+            }
+            if(parkingLots.get(i).getCars().size()==10)continue;
+            else {
+                return parkingLots.get(i).setCar(car);
+            }
+        }
+        return null;
     }
 
     public Car fetchCarByTicket(Ticket ticket) {
-        Car car=parkingLot.getCarByTicket(ticket);
-        if(ticket==null)message="Please provide your parking ticket.";
-        else if(car==null)message= "Unrecognized parking ticket";
+        if(ticket==null){
+            message="Please provide your parking ticket.";
+            return null;
+        }
+        if(ticket.getParkingLotNumber()==null){
+            message= "Unrecognized parking ticket";
+            return null;
+        }
+        Car car=parkingLots.get(ticket.getParkingLotNumber()).getCarByTicket(ticket);
+        if(car==null)message= "Unrecognized parking ticket";
         return car;
     }
 
