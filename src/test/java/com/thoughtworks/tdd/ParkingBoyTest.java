@@ -3,7 +3,9 @@ package com.thoughtworks.tdd;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ParkingBoyTest {
@@ -241,6 +243,45 @@ public class ParkingBoyTest {
 
         //then
         Assertions.assertSame(2,number);
+    }
+
+    @Test
+    public void should_return_car_when_manager_specify_parkingBoy_parkingCar_given_has_car(){
+
+        //given
+        List<Map<Integer,ParkingLot>> parkingLotsList=new ArrayList<>();
+        Map<Integer,ParkingLot> parkingLots=new HashMap<>();
+        for (int i = 1; i <=8 ; i++) {
+            parkingLots.put(i,new ParkingLot(i,10));
+            if(i%2==0){
+                parkingLotsList.add(parkingLots);
+                parkingLots=new HashMap<>();
+            }
+        }
+        Map<String,ParkingBoy> managerList=new HashMap<>();
+        managerList.put("parkingBoy",new ParkingBoy(parkingLotsList.get(0)));
+        managerList.put("smartParkingBoy",new SmartParkingBoy(parkingLotsList.get(1)));
+        managerList.put("superSmartParkingBoy",new SuperSmartParkingBoy(parkingLotsList.get(2)));
+        Manager manager=new Manager(managerList,parkingLotsList.get(3));
+        Car car=new Car();
+
+        //when
+        ParkingBoy assignBoy=manager.specify("parkingBoy");
+        Ticket ticket=assignBoy.parkingCar(car);
+        Car fetchCar1=assignBoy.fetchCarByTicket(ticket);
+
+        assignBoy=manager.specify("smartParkingBoy");
+        ticket=assignBoy.parkingCar(car);
+        Car fetchCar2=assignBoy.fetchCarByTicket(ticket);
+
+        assignBoy=manager.specify("superSmartParkingBoy");
+        ticket=assignBoy.parkingCar(car);
+        Car fetchCar3=assignBoy.fetchCarByTicket(ticket);
+
+        //then
+        Assertions.assertSame(car,fetchCar1);
+        Assertions.assertSame(car,fetchCar2);
+        Assertions.assertSame(car,fetchCar3);
     }
 
 

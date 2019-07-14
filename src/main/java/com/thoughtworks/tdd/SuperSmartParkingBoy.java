@@ -11,18 +11,17 @@ public class SuperSmartParkingBoy extends ParkingBoy{
     public Ticket parkingCar(Car car) {
         Integer lessNumber=1;
         float lessRate=0.00f;
-        for (int i = 1; i <=this.parkingLots.size() ; i++) {
-            float currentRate=(float)this.parkingLots.get(i).getCars().size()/(this.parkingLots.get(i).getCapacity());
+        for (Map.Entry<Integer,ParkingLot> entry : this.parkingLots.entrySet()){
+            float currentRate=(float)entry.getValue().getCars().size()/(entry.getValue().getCapacity());
             if(currentRate>lessRate){
-                lessNumber=i;
+                lessNumber=entry.getKey();
                 lessRate=currentRate;
             }
             else if(currentRate==lessRate){
-                Integer currentSize=this.parkingLots.get(i).getCars().size();
-                Integer lessSize=this.parkingLots.get(lessNumber).getCars().size();
-                lessNumber=currentSize>lessSize?lessNumber:i;
+                Integer currentSize=entry.getValue().getCars().size();
+                Integer lessSize=entry.getValue().getCars().size();
+                lessNumber=currentSize>lessSize?lessNumber:entry.getKey();
             }
-
         }
         Ticket ticket=this.parkingLots.get(lessNumber).setCar(car);
         return ticket;
