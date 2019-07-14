@@ -303,7 +303,29 @@ public class ParkingBoyTest {
 
     }
 
-    
+    @Test
+    public void should_return_errorMessage_when_manager_specify_boy_parking_car_given_full_parkinglot(){
+
+        //given
+        Car car=new Car();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        for (int i = 0; i < 10; i++) {
+            parkingBoy.parkingCar(new Car());
+        }
+        Map<String,ParkingBoy> managerList=new HashMap<>();
+        managerList.put("parkingBoy",parkingBoy);
+        Manager manager=new Manager(managerList,null);
+
+        //when
+        ParkingBoy assignBoy=manager.specify("parkingBoy");
+        Ticket ticket=assignBoy.parkingCar(car);
+
+        //then
+        Assertions.assertSame("Not enough position.",manager.showMessage());
+
+    }
+
+
 
 
 }

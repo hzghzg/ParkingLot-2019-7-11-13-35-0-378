@@ -24,4 +24,13 @@ public class Manager extends ParkingBoy{
         return specifyBoy;
     }
 
+    public String showMessage(){
+        for (Map.Entry<String,ParkingBoy> entry:managerList.entrySet()){
+            if(entry.getValue()!=null&&entry.getValue().message!=""){
+                return entry.getValue().message;
+            }
+        }
+        return null;
+    }
+
 }
