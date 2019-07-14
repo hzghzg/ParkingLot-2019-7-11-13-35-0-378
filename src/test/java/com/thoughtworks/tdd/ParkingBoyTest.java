@@ -219,5 +219,29 @@ public class ParkingBoyTest {
         Assertions.assertSame(2,number);
     }
 
+    @Test
+    public void should_return_larger_rate_parkingLot_number_when_parking_car_given_has_car(){
+
+        //given
+        Map<Integer,ParkingLot> parkingLots=new HashMap<>();
+        parkingLots.put(1,new ParkingLot(1,10));
+        parkingLots.put(2,new ParkingLot(2,15));
+        SuperSmartParkingBoy superSmartParkingBoy=new SuperSmartParkingBoy(parkingLots);
+        for (int i = 0; i <5 ; i++) {
+            superSmartParkingBoy.parkingCar(new Car());
+        }
+        for (int i = 0; i <4 ; i++) {
+            superSmartParkingBoy.parkingCar(new Car());
+        }
+        Car car=new Car();
+
+        //when
+        Ticket ticket=superSmartParkingBoy.parkingCar(car);
+        Integer number = ticket.getParkingLotNumber();
+
+        //then
+        Assertions.assertSame(2,number);
+    }
+
 
 }

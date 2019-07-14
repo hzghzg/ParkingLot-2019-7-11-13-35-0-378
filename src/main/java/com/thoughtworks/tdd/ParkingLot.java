@@ -10,9 +10,15 @@ public class ParkingLot {
     private Map<Ticket,Car> cars=new HashMap<>();
 
     private Integer parkingLotNumber;
+    private Integer capacity;
 
     public ParkingLot(Integer parkingLotNumber) {
         this.parkingLotNumber = parkingLotNumber;
+    }
+
+    public ParkingLot(Integer parkingLotNumber, Integer capacity) {
+        this.parkingLotNumber = parkingLotNumber;
+        this.capacity = capacity;
     }
 
     public Integer getParkingLotNumber() {
@@ -36,5 +42,9 @@ public class ParkingLot {
 
     public Map<Ticket, Car> getCars() {
         return cars;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
     }
 }
