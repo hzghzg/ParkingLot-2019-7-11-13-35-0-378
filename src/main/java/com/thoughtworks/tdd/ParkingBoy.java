@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class ParkingBoy {
 
+    public static final int MAXCAPACITY = 10;
     protected Map<Integer,ParkingLot> parkingLots=new HashMap<>();
     protected String message;
 
@@ -18,13 +19,9 @@ public class ParkingBoy {
 
     public Ticket parkingCar(Car car) {
         for (int i=1;i<=parkingLots.size();i++) {
-            if(parkingLots.get(i).getCars().size()==10&&i==parkingLots.size()){
-                message= "Not enough position.";
-            }
-            if(parkingLots.get(i).getCars().size()==10)continue;
-            else {
-                return parkingLots.get(i).setCar(car);
-            }
+            if(parkingLots.get(i).getCars().size()==MAXCAPACITY&&i==parkingLots.size()) message= "Not enough position.";
+            if(parkingLots.get(i).getCars().size()==MAXCAPACITY)continue;
+            else return parkingLots.get(i).setCar(car);
         }
         return null;
     }
