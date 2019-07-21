@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class ParkingLot {
 
+    public static final int MAXCAPACITY = 10;
     private Map<Ticket,Car> cars=new HashMap<>();
 
     private Integer parkingLotNumber;
@@ -28,12 +29,11 @@ public class ParkingLot {
     public Ticket setCar(Car car) {
         Ticket ticket = new Ticket();
         ticket.setParkingLotNumber(this.parkingLotNumber);
-        if(cars.size()<10){
+        if(cars.size()< MAXCAPACITY){
             cars.put(ticket,car);
             return ticket;
-        }else{
-            return null;
         }
+        return null;
     }
 
     public Car getCarByTicket(Ticket ticket) {
