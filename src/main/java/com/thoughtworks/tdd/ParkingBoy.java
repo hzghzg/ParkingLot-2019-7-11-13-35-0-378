@@ -27,19 +27,24 @@ public class ParkingBoy {
     }
 
     public Car fetchCarByTicket(Ticket ticket) {
-        if(ticket==null){
-            message="Please provide your parking ticket.";
+        if(!verifyTicket(ticket))
             return null;
-        }
-        if(ticket.getParkingLotNumber()==null){
-            message= "Unrecognized parking ticket";
-            return null;
-        }
         Car car=parkingLots.get(ticket.getParkingLotNumber()).getCarByTicket(ticket);
         if(car==null)message= "Unrecognized parking ticket";
         return car;
     }
-
+    public boolean verifyTicket(Ticket ticket){
+        boolean flag=false;
+        if(ticket==null){
+            message="Please provide your parking ticket.";
+            return flag;
+        }
+        if(ticket.getParkingLotNumber()==null){
+            message= "Unrecognized parking ticket";
+            return flag;
+        }
+        return !flag;
+    }
     public String showMessage() {
         return message;
     }
